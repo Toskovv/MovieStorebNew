@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MovieStoreb.Datalayer\MovieStoreb.Datalayer.csproj" />
+    <ProjectReference Include="..\MovieStore.Models\MovieStore.Models.csproj" />
   </ItemGroup>
 
 </Project>
