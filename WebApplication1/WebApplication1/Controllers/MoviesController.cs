@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
             _movieRepositori = movieRepositori;
         }
 
-        [HttpGet]
+        [HttpGet ("GetAll")]
         public IEnumerable<Movie> Get()
         {
             return _movieRepositori.GetMovies();

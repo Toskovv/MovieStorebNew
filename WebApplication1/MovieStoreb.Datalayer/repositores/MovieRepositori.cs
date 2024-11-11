@@ -6,9 +6,18 @@ namespace MovieStoreb.Datalayer.repositores
 {
     public class MovieRepositori : IMovieRepositori
     {
-        public List<Movie> GetMovies()
+        public void AddMovie(Movie movie)
+        {
+            StaticData.Movies.Add(movie);
+        }
+
+
+        public List<Movie> GetAllMovies()
         {
             return StaticData.Movies;
+
+
+
         }
     }
 }
