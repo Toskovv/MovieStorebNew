@@ -1,7 +1,9 @@
+using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using MovieStore.BL.Interfaces;
 using MovieStore.DL.Interfaces;
 using MovieStore.Models.DTO;
+using MovieStore.Models.Request;
 
 namespace MovieStore.Controllers
 {
@@ -10,10 +12,12 @@ namespace MovieStore.Controllers
     public class MoviesController : ControllerBase
     {
         private readonly IMovieService _movieService;
-
-        public MoviesController(IMovieService movieService)
+        private readonly IMapper _mapper;
+        public MoviesController(IMovieService movieService, IMapper mapper)
         {
             _movieService = movieService;
+            _mapper = mapper;
+
         }
 
         [HttpGet("GetAll")]
@@ -23,10 +27,24 @@ namespace MovieStore.Controllers
         }
 
         [HttpPost("Add")]
-        public void Add(Movie movie)
+        public void Add(AddMovieRequest movie)
         {
-            _movieService.AddMovie(movie);
+            var movieDto = _mapper.Map<Movie>(movie);
+
+            _movieService.AddMovie(movieDto);
+        }
+        [HttpDelete("Delete")]
+        public void Delete(int id)
+        {
+            _movieService.DeleteMovie(id);
+        }
+        [HttpPut("Update")]
+
+        public void Update(UpdateMovieRequest movie)
+        {
+            var movieDto=_mapper.Map<Movie>(movie);
+            _movieService.UpdateMovie(movieDto);
         }
 
-    }
+    } 
 }

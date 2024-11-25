@@ -7,6 +7,8 @@
         public string Title { get; set; }
 
         public int Year { get; set; }
+        public IEnumerable<int> Actors { get; set; }=
+            Enumerable.Empty<int>();
 
     }
 }

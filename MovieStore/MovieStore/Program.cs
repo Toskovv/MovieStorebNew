@@ -1,7 +1,8 @@
 using MovieStore.BL;
 using MovieStore.BL.Interfaces;
 using MovieStore.BL.Services;
-
+using Mapster;
+using MovieStore.MapsterConfig;
 namespace MovieStore
 {
     public class Program
@@ -18,8 +19,8 @@ namespace MovieStore
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-
+            builder.Services.AddMapster();
+            MapsterConfiguration.Configure();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
