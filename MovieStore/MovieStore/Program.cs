@@ -1,13 +1,11 @@
-using MovieStore.BL;
-using MovieStore.BL.Interfaces;
-using MovieStore.BL.Services;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Mapster;
-using MovieStore.MapsterConfig;
+using MovieStore.BL;
+using MovieStore.Validators;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
-using FluentValidation;
-using MovieStore.Validators;
-using FluentValidation.AspNetCore;
+
 namespace MovieStore
 {
     public class Program
@@ -28,14 +26,18 @@ namespace MovieStore
                 .RegisterBusinessLayer();
 
 
+
             builder.Services.AddValidatorsFromAssemblyContaining<AddMovieRequestValidator>();
             builder.Services.AddFluentValidationAutoValidation();
+
+
+            builder.Services.AddMapster();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddMapster();
-            MapsterConfiguration.Configure();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
