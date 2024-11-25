@@ -3,6 +3,11 @@ using MovieStore.BL.Interfaces;
 using MovieStore.BL.Services;
 using Mapster;
 using MovieStore.MapsterConfig;
+using Serilog;
+using Serilog.Sinks.SystemConsole.Themes;
+using FluentValidation;
+using MovieStore.Validators;
+using FluentValidation.AspNetCore;
 namespace MovieStore
 {
     public class Program
@@ -11,10 +16,20 @@ namespace MovieStore
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var logger = new LoggerConfiguration()
+            .Enrich.FromLogContext()
+            .WriteTo.Console(theme: AnsiConsoleTheme.Code)
+            .CreateLogger();
+
+            builder.Logging.AddSerilog(logger);
             // Add services to the container.
             builder.Services
                 .RegisterDataLayer()
                 .RegisterBusinessLayer();
+
+
+            builder.Services.AddValidatorsFromAssemblyContaining<AddMovieRequestValidator>();
+            builder.Services.AddFluentValidationAutoValidation();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
