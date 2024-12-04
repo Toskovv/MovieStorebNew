@@ -16,12 +16,9 @@ namespace MovieStore.Controllers
     [Route("[controller]")]
     public class MoviesController : ControllerBase
     {
-       
         private readonly IMovieService _movieService;
         private readonly IMapper _mapper;
         private readonly ILogger<MoviesController> _logger;
-        
-
         public MoviesController(IMovieService movieService, IMapper mapper,ILogger<MoviesController>logger)
 
         {
@@ -29,7 +26,6 @@ namespace MovieStore.Controllers
             _mapper = mapper;
             _logger = logger;
     }
-
         [HttpGet("GetAll")]
         public IActionResult Get()
         {
@@ -71,11 +67,9 @@ namespace MovieStore.Controllers
                 return BadRequest();
             }
             _movieService.AddMovie(movieDto);
-            return Ok();
-            
+            return Ok();   
         }
-       
-        [HttpDelete("Delete")]
+               [HttpDelete("Delete")]
         public IActionResult Delete(int id)
         {
             if (id <= 0)
@@ -88,10 +82,8 @@ namespace MovieStore.Controllers
                 return NotFound($"Movie with ID:{id} not found");
             }
             return Ok(result);
-
-            //_movieService.DeleteMovie(id);
+           //_movieService.DeleteMovie(id);
         }
-
         [HttpPut("Update")]
         public void Update(UpdateMovieRequest movie)
         {
