@@ -1,6 +1,8 @@
-﻿namespace MovieStore.Controllers
+﻿
+namespace MovieStore.Controllers
 {
-    internal interface IActorRepository
+    public interface IActorRepository
     {
+        IEnumerable<object> GetActorsByMovieId(int id);
     }
 }
