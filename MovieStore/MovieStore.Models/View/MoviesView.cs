@@ -1,20 +1,14 @@
-﻿using MovieStore.Models.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MovieStore.Models.DTO;
 
-namespace MovieStore.Models.View
+namespace MovieStore.Models.View;
+
+public class MoviesView
 {
-    public class MoviesView
-    {
-        public int MovieId { get; set; }
+    public string MovieId { get; set; }
 
-        public string MovieTitle { get; set; }
+    public string MovieTitle { get; set; } = string.Empty;
 
-        public int MovieYear { get; set; }
+    public int MovieYear { get; set; }
 
-        IEnumerable<Movie> Actor { get; set; } = [];
-}
+    public List<Actor> Actors { get; set; } = [];
 }

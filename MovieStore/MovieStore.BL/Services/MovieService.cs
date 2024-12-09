@@ -1,17 +1,21 @@
 ﻿using MovieStore.BL.Interfaces;
 using MovieStore.DL.Interfaces;
 using MovieStore.Models.DTO;
-using MovieStore.Models.Request;
 
 namespace MovieStore.BL.Services
 {
     public class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
+        private readonly IActorRepository _actorRepository;
 
-        public MovieService(IMovieRepository movieRepository)
+        public Guid Id { get; set; }
+
+        public MovieService(IMovieRepository movieRepository, IActorRepository actorRepository)
         {
             _movieRepository = movieRepository;
+            _actorRepository = actorRepository;
+            Id = Guid.NewGuid();
         }
         
         public List<Movie> GetAllMovies()
@@ -24,24 +28,24 @@ namespace MovieStore.BL.Services
             _movieRepository.AddMovie(movie);
         }
 
-        public void AddMovie(AddMovieRequest movie)
+        public Movie? GetMovieById(string id)
         {
-            throw new NotImplementedException();
+            return _movieRepository.GetMovieById(id);
         }
 
-        public void DeleteMovie(int id)
+        public void DeleteMovie(string id)
         {
-            throw new NotImplementedException();
+            _movieRepository.DeleteMovie(id);
         }
 
         public void UpdateMovie(Movie movie)
         {
-            throw new NotImplementedException();
+            _movieRepository.UpdateMovie(movie);
         }
 
-        public Movie? GetById(int id)
+        public Actor? GetActorById(int id)
         {
-            throw new NotImplementedException();
+            return _actorRepository.GetActorById(id);
         }
     }
 }
