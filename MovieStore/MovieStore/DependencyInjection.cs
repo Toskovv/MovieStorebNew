@@ -1,6 +1,4 @@
 ﻿using MovieStore.BL;
-using MovieStore.BL.Interfaces;
-using MovieStore.BL.Services;
 
 namespace MovieStore
 {
@@ -8,8 +6,6 @@ namespace MovieStore
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddSingleton<IMovieService, MovieService>();
-            services.AddSingleton<MovieBlService, MovieBlService>();
             services.RegisterDataLayer();
             services.RegisterBusinessLayer();
         }
