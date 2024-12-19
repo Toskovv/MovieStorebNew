@@ -1,7 +1,9 @@
-namespace MovieStore.Models.Configurations;
-
-public class MongoDbConfiguration
+﻿namespace MovieStore.Models.Configurations
 {
-    public string ConnectionString { get; set; }
-    public string DatabaseName { get; set; }
+    public class MongoDbConfiguration
+    {
+        public string ConnectionString { get; set; }
+
+        public string DatabaseName { get; set; }
+    }
 }

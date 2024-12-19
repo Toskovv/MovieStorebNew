@@ -1,5 +1,5 @@
-using FluentValidation;
-using MovieStore.Models.Request;
+﻿using FluentValidation;
+using MovieStore.Models.Requests;
 
 namespace MovieStore.Validators
 {
@@ -14,7 +14,7 @@ namespace MovieStore.Validators
                 .MinimumLength(2);
 
             RuleFor(x => x.Year)
-                .GreaterThan(1900).WithMessage("Year must be greater than 1900")
+                .GreaterThan(1900).WithMessage("Year must be greater than 1900 lshfkjsd")
                 .LessThan(2100);
         }
     }

@@ -1,18 +1,34 @@
-using MovieStore.DL.Interfaces;
-using MovieStore.DL.StaticDB;
+﻿using MovieStore.DL.Interfaces;
 using MovieStore.Models.DTO;
 
-namespace MovieStore.DL.Repositories;
-
-public class ActorStaticRepository : IActorRepository
+namespace MovieStore.DL.Repositories
 {
-    public Actor? GetActorById(int actorId)
-    {
-        return InMemoryDb.Actor.FirstOrDefault(a => a.ID == actorId);
-    }
+    //public class ActorStaticRepository : IActorRepository
+    //{
+    //    public IEnumerable<Actor> GetActorsByIds(IEnumerable<int> actorsIds)
+    //    {
+    //        var result = new List<Actor>();
 
-    public List<Actor> GetActorsById(IEnumerable<int> actorIds)
-    {
-        return InMemoryDb.Actor.Where(a => actorIds.Contains(a.ID)).ToList();
-    }
+    //        foreach (var actorsId in actorsIds)
+    //        {
+    //            foreach (var actor in StaticDB.InMemoryDb.Actors)
+    //            {
+    //                if (actor.Id == actorsId)
+    //                {
+    //                    result.Add(actor);
+    //                }
+    //            }
+    //        }
+
+    //        return result;
+
+    //    }
+
+
+    //    public Actor? GetById(int id)
+    //    {
+    //        return StaticDB.InMemoryDb.Actors.
+    //            FirstOrDefault(x => x.Id == id);
+    //    }
+    //}
 }

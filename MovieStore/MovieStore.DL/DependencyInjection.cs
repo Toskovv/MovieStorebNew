@@ -9,8 +9,9 @@ namespace MovieStore.DL
     {
         public static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddSingleton<IMovieRepository, MovieMongoRepository>();
-            services.AddSingleton<IActorRepository, ActorStaticRepository>();
+            services
+                .AddSingleton<IMovieRepository, MovieRepository>()
+                .AddSingleton<IActorRepository, ActorRepository>();
         }
     }
 }
