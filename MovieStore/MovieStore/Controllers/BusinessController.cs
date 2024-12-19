@@ -1,39 +1,46 @@
-using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using MovieStore.BL.Interfaces;
-using MovieStore.Models.Responses;
-using MovieStore.Models.View;
+using MovieStore.Models.DTO;
 
 namespace MovieStore.Controllers
-
 {
     [ApiController]
     [Route("[controller]")]
     public class BusinessController : ControllerBase
     {
-        private readonly ILogger<BusinessController> _logger;
-        private readonly IBusinessService _businessService;
-        private readonly IMapper _mapper;
+        private readonly IMovieBlService _movieService;
+        private readonly IActorService _actorService;
 
-        public BusinessController(ILogger<BusinessController> logger, IBusinessService businessService, IMapper mapper)
+        public BusinessController(IMovieBlService movieService, IActorService actorService)
         {
-            _logger = logger;
-            _businessService = businessService;
-            _mapper = mapper;
+            _movieService = movieService;
+            _actorService = actorService;
         }
 
-        [HttpGet("GetAllDetailedMovie")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetDetailedMovieInfo()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("GetAllMovieWithDetails")]
+        public IActionResult GetAllMovieWithDetails()
         {
-            var result = _businessService.GetDetailedMovies();
-            if (!result.Any())
+            var result = _movieService.GetDetailedMovies();
+
+            if (result == null || result.Count == 0)
             {
-                return NotFound();
+                return NotFound("No movies found");
             }
 
             return Ok(result);
         }
+
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpPost("AddActor")]
+        public IActionResult AddActor([FromBody] Actor actor)
+        {
+            _actorService.Add(actor);
+
+            return Ok();
+        }
+
     }
 }
