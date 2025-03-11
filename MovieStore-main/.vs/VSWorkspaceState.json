@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MovieService.Tests",
+    "\\MovieStore",
+    "\\MovieStore.BL",
+    "\\MovieStore.BL\\bin",
+    "\\MovieStore.BL\\bin\\Debug",
+    "\\MovieStore.BL\\Interfaces"
+  ],
+  "SelectedNode": "\\MovieStore.BL\\Interfaces\\IMovieService.cs",
+  "PreviewInSolutionExplorer": false
+}
